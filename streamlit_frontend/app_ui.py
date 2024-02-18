@@ -61,7 +61,6 @@ if uploaded_file is not None:
 
     # Display extracted text
     st.write("Document loaded successfully!")
-    st.header("Extracted Text:")
     preview_length = 100  # Number of words for preview
     preview_text = f"{text[:1000]} ..."
     # st.text(preview_text)
@@ -77,3 +76,5 @@ if uploaded_file is not None:
         st.error(
             f"Failed to send extracted text to the Flask service. Status code: {response.status_code}"
         )
+
+    st.write(f"Response: {response}")
