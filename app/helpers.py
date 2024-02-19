@@ -16,7 +16,7 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 def retrieve_pipeline(query, response_mode="tree_summarize", similarity_top_k=5):
     # rebuild storage context
-    storage_context = StorageContext.from_defaults(persist_dir="./storage")
+    storage_context = StorageContext.from_defaults(persist_dir="storage")
 
     # load index
     index = load_index_from_storage(storage_context=storage_context)
