@@ -4,3 +4,4 @@ Flask
 streamlit
 PyPDF2
 python-docx
+openai
