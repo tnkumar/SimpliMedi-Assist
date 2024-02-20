@@ -96,10 +96,8 @@ if uploaded_file is not None:
     with left_column:
         st.subheader("OpenAI Results")
         # Add content specific to OpenAI results
-        client = OpenAI(
-        # This is the default and can be omitted
-        api_key=os.environ.get("OPENAI_API_KEY"),
-        )
+        api_key = os.environ.get("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
+        client = OpenAI(api_key=api_key,)
 
         query = f"""
         Assume you're a patient with limited medical knowledge.
