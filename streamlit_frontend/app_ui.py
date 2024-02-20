@@ -2,6 +2,13 @@ import streamlit as st
 import requests
 import PyPDF2  # For PDFs
 from docx import Document  # For DOCX files
+from openai import OpenAI
+import os
+from os import environ
+from dotenv import load_dotenv
+load_dotenv()
+
+
 
 
 # st. set_page_config(layout="wide")
@@ -82,4 +89,38 @@ if uploaded_file is not None:
     response_json = response.json()
     message = response_json.get("response", {}).get("message", "")  
 
-    st.write(f"Response message: {message}")
+    # Split the page into two columns
+    left_column, right_column = st.columns(2)
+
+    # Content for the left column (OpenAI results)
+    with left_column:
+        st.subheader("OpenAI Results")
+        # Add content specific to OpenAI results
+        client = OpenAI(
+        # This is the default and can be omitted
+        api_key=os.environ.get("OPENAI_API_KEY"),
+        )
+
+        query = f"""
+        Assume the role of a medical doctor
+        Take the medical report from {text} and explain it to my in very simple english 
+        """
+
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": query,
+                }
+            ],
+            model="gpt-3.5-turbo",
+        )
+        st.write(f"Response message: {chat_completion.choices[0].message.content}")
+
+    # Content for the right column (OpenAI + RAG results)
+    with right_column:
+        st.subheader("OpenAI + RAG Results")
+        # Add content for OpenAI + RAG results
+        st.write(f"Response message: {message}")
+
+    # st.write(f"Response message: {message}")
