@@ -12,9 +12,16 @@ def index():
     data = request.data.decode('utf-8')
 
     query = f"""
-    Assume the role of a medical doctor
-    Take the medical report from {data} and explain it to my in very simple english 
-    """
+        Assume you're a patient with limited medical knowledge.
+        You've received an MRI scan report, but it's filled with complex medical jargon.
+        You want the report explained to you in plain English so you can understand it better.
+        Break down the MRI findings and explain any abnormalities or conditions detected.
+        Include details on what each part of the MRI image represents and how it relates to your health.
+        Provide insights into potential treatment options or further diagnostic tests based on the MRI findings.
+        Provide clarification on any terms or concepts you're unfamiliar with.
+        
+        Medical report: {data} 
+        """
 
     answer = retrieve_pipeline(query=query)
 
