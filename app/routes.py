@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from app import app
-from .helpers import create_index
+from .helpers import create_index, retrieve_pipeline
 
 @app.route('/', methods=['POST'])
 def index():
@@ -11,9 +11,16 @@ def index():
     # Get the text data from the request
     data = request.data.decode('utf-8')
 
+    query = f"""
+    Assume the role of a medical doctor
+    Take the medical report from {data} and explain it to my in very simple english 
+    """
+
+    answer = retrieve_pipeline(query=query)
+
     # Prepare the response data
     response_data = {
-        "message": "Welcome to SimpliMedi-Assist!",
+        "message": answer,
     }
 
     # Return the response
