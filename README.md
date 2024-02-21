@@ -8,7 +8,7 @@ empowering users with clear insights.
 ## Features
 
 - **Custom Question-Answering:** Develop chatbots that draw from personal or organizational data sources for tailored responses.
-- **LangChain Integration:** Utilize LangChain's capabilities to enhance the accuracy and relevance of answers.
+- **LlamaIndex Integration:** Utilize LlamaIndex's capabilities to build RAG engine to enhance the accuracy and relevance of answers.
 - **Streamlit Cloud Deployment:** Easily deploy your custom Q&A applications on Streamlit Cloud.
 
 ## Getting Started
@@ -23,7 +23,7 @@ empowering users with clear insights.
 1. Clone the repository to your local machine:
 
    ```shell
-   git clone https://github.com/yourusername/DataWhisperer.git
+   git clone https://github.com/Timmy485/SimpliMedi-Assist.git
 2. Install the required dependencies:
 
    ```shell
