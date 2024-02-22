@@ -89,43 +89,43 @@ if uploaded_file is not None:
     response_json = response.json()
     message = response_json.get("response", {}).get("message", "")  
 
-    # Split the page into two columns
-    left_column, right_column = st.columns(2)
+    # # Split the page into two columns
+    # left_column, right_column = st.columns(2)
 
-    # Content for the left column (OpenAI results)
-    with left_column:
-        st.subheader("OpenAI Results")
-        # Add content specific to OpenAI results
-        api_key = os.environ.get("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
-        client = OpenAI(api_key=api_key,)
+    # # Content for the left column (OpenAI results)
+    # with left_column:
+    #     st.subheader("OpenAI Results")
+    #     # Add content specific to OpenAI results
+    #     api_key = os.environ.get("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
+    #     client = OpenAI(api_key=api_key,)
 
-        query = f"""
-        Assume you're a patient with limited medical knowledge.
-        You've received an MRI scan report, but it's filled with complex medical jargon.
-        You want the report explained to you in plain English so you can understand it better.
-        Break down the MRI findings and explain any abnormalities or conditions detected.
-        Include details on what each part of the MRI image represents and how it relates to your health.
-        Provide insights into potential treatment options or further diagnostic tests based on the MRI findings.
-        Provide clarification on any terms or concepts you're unfamiliar with.
+    #     query = f"""
+    #     Assume you're a patient with limited medical knowledge.
+    #     You've received an MRI scan report, but it's filled with complex medical jargon.
+    #     You want the report explained to you in plain English so you can understand it better.
+    #     Break down the MRI findings and explain any abnormalities or conditions detected.
+    #     Include details on what each part of the MRI image represents and how it relates to your health.
+    #     Provide insights into potential treatment options or further diagnostic tests based on the MRI findings.
+    #     Provide clarification on any terms or concepts you're unfamiliar with.
         
-        Medical report: {text} 
-        """
+    #     Medical report: {text} 
+    #     """
 
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": query,
-                }
-            ],
-            model="gpt-3.5-turbo",
-        )
-        st.write(f"Response message: {chat_completion.choices[0].message.content}")
+    #     chat_completion = client.chat.completions.create(
+    #         messages=[
+    #             {
+    #                 "role": "user",
+    #                 "content": query,
+    #             }
+    #         ],
+    #         model="gpt-3.5-turbo",
+    #     )
+    #     st.write(f"Response message: {chat_completion.choices[0].message.content}")
 
-    # Content for the right column (OpenAI + RAG results)
-    with right_column:
-        st.subheader("OpenAI + RAG Results")
-        # Add content for OpenAI + RAG results
-        st.write(f"Response message: {message}")
+    # # Content for the right column (OpenAI + RAG results)
+    # with right_column:
+    #     st.subheader("OpenAI + RAG Results")
+    #     # Add content for OpenAI + RAG results
+    #     st.write(f"Response message: {message}")
 
-    # st.write(f"Response message: {message}")
+    st.write(f"Response message: {message}")
