@@ -74,7 +74,7 @@ if uploaded_file is not None:
     # st.text(preview_text)
 
     # Send extracted text via API to Flask service
-    api_url = "https://simpimedi-assist.onrender.com/"
+    api_url = "https://simplimedi-assist.onrender.com"
     response = requests.post(api_url, data=text.encode("utf-8"))
 
     # Check if the request was successful
